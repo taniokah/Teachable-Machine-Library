@@ -43,7 +43,7 @@
             // render the probability scores per class
             for (let i = 0; i < classLabels.length; i++) {
                 const classPrediction = classLabels[i] + ": " + result.scores[i].toFixed(2);
-                labelContainer.childNodes[i].innerHTML = classPrediction;
+                labelContainer.childNodes[i].innerHTML = result.scores[i].toFixed(2) > 0.8 ? '<div style="color:red">' + classPrediction + '</div>' : classPrediction;
             }
         }, {
             includeSpectrogram: true, // in case listen should return result.spectrogram
@@ -53,6 +53,6 @@
         });
 
         // Stop the recognition in 5 seconds.
-        // setTimeout(() => recognizer.stopListening(), 5000);
+        setTimeout(() => recognizer.stopListening(), 5000);
     }
 </script>
